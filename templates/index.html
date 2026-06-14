@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}SalaryScope | Know your market value{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="hero-copy">
+        <div class="eyebrow"><span></span> Data-driven career insights</div>
+        <h1>Turn your skills into a <span class="gradient-text">salary estimate.</span></h1>
+        <p class="hero-text">
+            Explore your expected annual package using your education, skills,
+            experience, preferred city and job role.
+        </p>
+        <div class="hero-actions">
+            <a class="button button-primary" href="{{ url_for('signup') }}">Start predicting <span>→</span></a>
+            <a class="button button-secondary" href="{{ url_for('login') }}">I have an account</a>
+        </div>
+        <div class="trust-row">
+            <span>✓ Fast estimate</span>
+            <span>✓ Secure account</span>
+            <span>✓ Private history</span>
+        </div>
+    </div>
+
+    <div class="hero-visual">
+        <div class="terminal-card">
+            <div class="terminal-top">
+                <div class="terminal-dots"><i></i><i></i><i></i></div>
+                <span>salary_model.py</span>
+                <span>⌁</span>
+            </div>
+            <div class="code-lines">
+                <p><b>class</b> <em>SalaryPredictor</em>:</p>
+                <p class="indent"><b>def</b> predict(profile):</p>
+                <p class="indent-2">market = <span>analyze</span>(profile)</p>
+                <p class="indent-2">salary = model.<span>estimate</span>(market)</p>
+                <p class="indent-2"><b>return</b> salary</p>
+            </div>
+            <div class="terminal-result">
+                <span>ESTIMATED PACKAGE</span>
+                <strong>₹ 9,80,000 <small>/ year</small></strong>
+                <div class="progress"><i></i></div>
+                <div><span>Model match</span><span>92%</span></div>
+            </div>
+        </div>
+        <div class="float-card float-one"><span>⌘</span><div><small>SKILLS ANALYZED</small><strong>Python + SQL</strong></div></div>
+        <div class="float-card float-two"><span>⌖</span><div><small>MARKET</small><strong>Bangalore</strong></div></div>
+    </div>
+</section>
+
+<section class="feature-strip">
+    <article><span>01</span><div><h3>Create your profile</h3><p>Keep your predictions connected to one secure account.</p></div></article>
+    <article><span>02</span><div><h3>Enter career details</h3><p>Add your skills, education, role, city and experience.</p></div></article>
+    <article><span>03</span><div><h3>Get your estimate</h3><p>Our Random Forest model learns salary patterns from the dataset.</p></div></article>
+</section>
+{% endblock %}

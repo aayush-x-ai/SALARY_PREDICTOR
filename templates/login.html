@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Login | SalaryScope{% endblock %}
+{% block content %}
+<section class="auth-layout">
+    <div class="auth-intro">
+        <div class="eyebrow"><span></span> Welcome back</div>
+        <h1>Your next career decision starts with <span class="gradient-text">better data.</span></h1>
+        <p>Log in to create a fresh salary estimate and review your previous predictions.</p>
+    </div>
+    <div class="panel auth-card">
+        <div class="panel-heading">
+            <span class="icon-box">↳</span>
+            <div><h2>Log in</h2><p>Enter your account details</p></div>
+        </div>
+        <form method="POST" class="form-grid">
+            <label class="full-field">
+                <span>Email address</span>
+                <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+            </label>
+            <label class="full-field">
+                <span>Password</span>
+                <input type="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+            </label>
+            <button class="button button-primary full-field" type="submit">Log in to dashboard <span>→</span></button>
+        </form>
+        <p class="form-switch">New to SalaryScope? <a href="{{ url_for('signup') }}">Create an account</a></p>
+    </div>
+</section>
+{% endblock %}

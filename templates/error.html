@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} | SalaryScope{% endblock %}
+{% block content %}
+<section class="empty-state panel standalone-error">
+    <span>!</span>
+    <h1>{{ title }}</h1>
+    <p>{{ message }}</p>
+    <a class="button button-primary" href="{{ url_for('home') }}">Back to home</a>
+</section>
+{% endblock %}

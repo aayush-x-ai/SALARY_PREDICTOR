@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Predict salary | SalaryScope{% endblock %}
+{% block content %}
+<section class="dashboard-heading">
+    <div>
+        <div class="eyebrow"><span></span> Prediction workspace</div>
+        <h1>Describe your professional profile.</h1>
+        <p>The model will find similar profiles and estimate an annual salary range.</p>
+    </div>
+    <div class="model-badge"><i></i><span>MODEL STATUS<strong>Ready</strong></span></div>
+</section>
+
+<section class="predict-layout">
+    <form class="panel predictor-form" action="{{ url_for('result') }}" method="POST">
+        <div class="panel-heading">
+            <span class="step-number">01</span>
+            <div><h2>Career information</h2><p>All fields are used in your prediction</p></div>
+        </div>
+        <div class="form-grid">
+            <label>
+                <span>Highest education</span>
+                <select name="education" required>
+                    <option value="">Select education</option>
+                    {% for item in educations %}<option>{{ item }}</option>{% endfor %}
+                </select>
+            </label>
+            <label>
+                <span>Preferred city</span>
+                <select name="city" required>
+                    <option value="">Select city</option>
+                    {% for item in cities %}<option>{{ item }}</option>{% endfor %}
+                </select>
+            </label>
+            <label>
+                <span>Career domain</span>
+                <select name="domain" required>
+                    <option value="">Select domain</option>
+                    {% for item in domains %}<option>{{ item }}</option>{% endfor %}
+                </select>
+            </label>
+            <label>
+                <span>Target job role</span>
+                <select name="job_role" required>
+                    <option value="">Select role</option>
+                    {% for item in roles %}<option>{{ item }}</option>{% endfor %}
+                </select>
+            </label>
+            <label>
+                <span>Experience in months</span>
+                <input type="number" name="experience_months" min="0" max="600" value="0" required>
+                <small>Enter 0 if you are a fresher</small>
+            </label>
+            <label>
+                <span>Technical skills</span>
+                <input type="text" name="skills" placeholder="Python, SQL, Flask" required>
+                <small>Separate multiple skills with commas</small>
+            </label>
+        </div>
+        <button class="button button-primary predict-button" type="submit">
+            <span>Generate salary prediction</span><span>→</span>
+        </button>
+    </form>
+
+    <aside class="side-stack">
+        <div class="panel info-panel">
+            <div class="mini-title"><span>⌘</span> How it works</div>
+            <ol>
+                <li><b>Profile encoding</b><span>Your answers become comparable data points.</span></li>
+                <li><b>Forest analysis</b><span>Multiple decision trees analyze salary patterns.</span></li>
+                <li><b>Combined result</b><span>The tree predictions are averaged for a stable estimate.</span></li>
+            </ol>
+        </div>
+        <div class="data-note"><span>i</span><p><b>Demo dataset</b>This estimate is for academic demonstration, not professional financial advice.</p></div>
+    </aside>
+</section>
+{% endblock %}

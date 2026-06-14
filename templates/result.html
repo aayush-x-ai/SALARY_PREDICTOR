@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Your estimate | SalaryScope{% endblock %}
+{% block content %}
+<section class="result-header">
+    <div class="eyebrow"><span></span> Prediction complete</div>
+    <h1>Your estimated annual package</h1>
+</section>
+
+<section class="result-layout">
+    <div class="panel salary-card">
+        <span class="result-label">PREDICTED SALARY</span>
+        <div class="salary-number">&#8377;{{ "{:,.0f}".format(prediction.salary) }}<small>/ year</small></div>
+        <p>Likely range: <b>&#8377;{{ "{:,.0f}".format(prediction.minimum) }}</b> to <b>&#8377;{{ "{:,.0f}".format(prediction.maximum) }}</b></p>
+        <div class="salary-meter"><i style="width: 76%"></i><span></span></div>
+        <div class="meter-labels"><span>Entry range</span><span>Your estimate</span><span>Senior range</span></div>
+        <div class="result-actions">
+            <a class="button button-primary" href="{{ url_for('predictor') }}">New prediction</a>
+            <a class="button button-secondary" href="{{ url_for('history') }}">View history</a>
+        </div>
+    </div>
+
+    <div class="panel profile-summary">
+        <div class="panel-heading"><span class="step-number">#{{ prediction_id }}</span><div><h2>Profile summary</h2><p>Inputs used by the model</p></div></div>
+        <dl>
+            <div><dt>Role</dt><dd>{{ job_role }}</dd></div>
+            <div><dt>Domain</dt><dd>{{ domain }}</dd></div>
+            <div><dt>City</dt><dd>{{ city }}</dd></div>
+            <div><dt>Education</dt><dd>{{ education }}</dd></div>
+            <div><dt>Experience</dt><dd>{{ experience_months }} months</dd></div>
+            <div><dt>Skills</dt><dd>{{ skills }}</dd></div>
+        </dl>
+        <div class="match-note"><span>&#10003;</span> Random Forest with {{ prediction.trees }} trees trained on {{ prediction.training_records }} salary profiles</div>
+    </div>
+</section>
+
+<section class="panel prediction-chart">
+    <div class="chart-heading">
+        <div>
+            <span class="result-label">SALARY VISUALIZATION</span>
+            <h2>Prediction range comparison</h2>
+            <p>Annual package values produced by the trained Random Forest model.</p>
+        </div>
+        <div class="chart-legend">
+            <span><i class="legend-minimum"></i>Minimum</span>
+            <span><i class="legend-predicted"></i>Predicted</span>
+            <span><i class="legend-maximum"></i>Maximum</span>
+        </div>
+    </div>
+
+    <div class="bar-chart" role="img" aria-label="Bar chart comparing minimum, predicted and maximum annual salary">
+        <div class="chart-grid">
+            <span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span>
+        </div>
+        <div class="chart-bars">
+            <div class="chart-column">
+                <div class="chart-value">&#8377;{{ "{:,.0f}".format(prediction.minimum) }}</div>
+                <div class="chart-bar bar-minimum" style="height: {{ (prediction.minimum / prediction.maximum * 100) | round }}%"></div>
+                <strong>Minimum</strong>
+            </div>
+            <div class="chart-column">
+                <div class="chart-value">&#8377;{{ "{:,.0f}".format(prediction.salary) }}</div>
+                <div class="chart-bar bar-predicted" style="height: {{ (prediction.salary / prediction.maximum * 100) | round }}%"></div>
+                <strong>Predicted</strong>
+            </div>
+            <div class="chart-column">
+                <div class="chart-value">&#8377;{{ "{:,.0f}".format(prediction.maximum) }}</div>
+                <div class="chart-bar bar-maximum" style="height: 100%"></div>
+                <strong>Maximum</strong>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

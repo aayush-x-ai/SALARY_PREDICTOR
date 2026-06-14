@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Create account | SalaryScope{% endblock %}
+{% block content %}
+<section class="auth-layout">
+    <div class="auth-intro">
+        <div class="eyebrow"><span></span> Get started</div>
+        <h1>Build a clearer view of your <span class="gradient-text">earning potential.</span></h1>
+        <p>Your account keeps each prediction private and creates a useful salary history.</p>
+    </div>
+    <div class="panel auth-card">
+        <div class="panel-heading">
+            <span class="icon-box">+</span>
+            <div><h2>Create account</h2><p>It only takes a minute</p></div>
+        </div>
+        <form method="POST" class="form-grid">
+            <label class="full-field">
+                <span>Full name</span>
+                <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
+            </label>
+            <label class="full-field">
+                <span>Email address</span>
+                <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+            </label>
+            <label>
+                <span>Password</span>
+                <input type="password" name="password" placeholder="Minimum 6 characters" minlength="6" autocomplete="new-password" required>
+            </label>
+            <label>
+                <span>Confirm password</span>
+                <input type="password" name="confirm_password" placeholder="Repeat password" minlength="6" autocomplete="new-password" required>
+            </label>
+            <button class="button button-primary full-field" type="submit">Create my account <span>→</span></button>
+        </form>
+        <p class="form-switch">Already registered? <a href="{{ url_for('login') }}">Log in</a></p>
+    </div>
+</section>
+{% endblock %}

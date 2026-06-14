@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Prediction history | SalaryScope{% endblock %}
+{% block content %}
+<section class="dashboard-heading">
+    <div>
+        <div class="eyebrow"><span></span> Saved results</div>
+        <h1>Your prediction history.</h1>
+        <p>Compare your previous salary estimates across roles and cities.</p>
+    </div>
+    <a class="button button-primary" href="{{ url_for('predictor') }}">+ New prediction</a>
+</section>
+
+<section class="panel table-panel">
+    {% if predictions %}
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>ID</th><th>Role & domain</th><th>City</th><th>Experience</th><th>Predicted salary</th><th>Date</th></tr></thead>
+                <tbody>
+                    {% for row in predictions %}
+                    <tr>
+                        <td><span class="table-id">#{{ row.prediction_id }}</span></td>
+                        <td><strong>{{ row.job_role }}</strong><small>{{ row.domain }}</small></td>
+                        <td>{{ row.city }}</td>
+                        <td>{{ row.experience_months }} months</td>
+                        <td class="table-salary">₹{{ "{:,.0f}".format(row.predicted_salary) }}</td>
+                        <td>{{ row.prediction_date.strftime("%d %b %Y") }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <span>⌁</span>
+            <h2>No predictions yet</h2>
+            <p>Complete your first profile to see its result here.</p>
+            <a class="button button-primary" href="{{ url_for('predictor') }}">Create prediction</a>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}
