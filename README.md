@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SalaryScope - Salary Predictor System
 
 SalaryScope is a simple full-stack mini project built with Flask, HTML/CSS,
@@ -82,3 +83,7 @@ python model\generate_dataset.py
 
 - `users`: account name, email, hashed password and creation date
 - `predictions`: profile inputs, predicted salary, date and related user
+=======
+# SALARY_PREDICTOR
+A MINI PROJECT WHERE YOU CAN PREDICT YOUR SALARY ACCORDING TO YOUR SKILLS WHERE WE USED THERE ML FOR PREDICTION.
+>>>>>>> 49e9c06706d266c625ba56c09112da8d08a78e47
