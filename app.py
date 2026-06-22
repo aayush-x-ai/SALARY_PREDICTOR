@@ -1,4 +1,9 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
+print("HOST =", os.getenv("DB_HOST"))
+print("PORT =", os.getenv("DB_PORT"))
+print("DB =", os.getenv("DB_NAME"))
 from functools import wraps
 
 import mysql.connector
@@ -48,6 +53,7 @@ ROLE_OPTIONS = [
 
 def get_db():
     if "db" not in g:
+        print("Connecting to:", app.config["DB_HOST"])
         g.db = mysql.connector.connect(
             host=app.config["DB_HOST"],
             port=app.config["DB_PORT"],
@@ -55,6 +61,7 @@ def get_db():
             password=app.config["DB_PASSWORD"],
             database=app.config["DB_NAME"],
         )
+        print("Database Connected Successfully")
     return g.db
 
 
